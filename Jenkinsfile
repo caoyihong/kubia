@@ -14,8 +14,12 @@ pipeline {
         }
         stage('Push') {
             steps {
-                sh 'echo "Hello world!"'
+                echo "Hello world."
                 input message: '确定要发布镜像吗？'
+                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                  sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
+                  sh "docker push caoyihong/kubia:${BUILD_ID}"
+                }
                 echo "push ended..."
             }
         }
