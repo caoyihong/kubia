@@ -1,21 +1,26 @@
 pipeline {
-    agent any
+     agent {
+        docker {
+            image 'node:7'
+            args '-p 3000:3000'
+        }
+    }
     stages {
         stage('Build') {
             steps {
-                sh './scripts/build.sh'
+                echo "hello,world."
             }
         }
         stage('Test') {
             steps {
-                sh './scripts/test.sh'
+                echo "test starting..."
             }
         }
-        stage('Deliver') {
+        stage('Push') {
             steps {
                 sh 'echo "Hello world!"'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './scripts/deploy.sh'
+                echo "push ended..."
             }
         }
     }
