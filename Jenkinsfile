@@ -9,6 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "hello,world."
+                sh "docker build -t caoyihong/kubia:${BUILD_ID} ."
             }
         }
         stage('Test') {
@@ -19,7 +20,7 @@ pipeline {
         stage('Push') {
             steps {
                 sh 'echo "Hello world!"'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                input message: '确定要发布镜像吗？'
                 echo "push ended..."
             }
         }
