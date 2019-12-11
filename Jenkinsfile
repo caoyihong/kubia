@@ -17,6 +17,9 @@ pipeline {
                 echo "Hello world."
                 input message: '确定要发布镜像吗？'
                 withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                  echo "测试账号---"
+                  echo ${dockerHubUser}
+                  echo ${dockerHubPassword}
                   sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
                   sh "docker push caoyihong/kubia:${BUILD_ID}"
                 }
