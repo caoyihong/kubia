@@ -24,8 +24,10 @@ pipeline {
             }
         }
         stage('Deploy') {
-            echo "Deploy Stage"
-            sh "kubectl apply -f kubia-deploment.yaml"
+            steps {
+            	echo "Deploy Stage"
+            	sh "kubectl apply -f kubia-deploment.yaml"
+           }
 	}
     }
 }
