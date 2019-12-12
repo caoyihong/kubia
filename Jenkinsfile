@@ -4,6 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "hello,world."
+		sh "sleep 240"
                 sh "docker build -t caoyihong/kubia:${BUILD_ID} ."
             }
         }
