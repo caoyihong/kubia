@@ -1,10 +1,14 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:7'
+            args '-p 3000:3000'
+        }
+    }
     stages {
         stage('Build') {
             steps {
                 echo "hello,world."
-		sh "sleep 240"
                 sh "docker build -t caoyihong/kubia:${BUILD_ID} ."
             }
         }
