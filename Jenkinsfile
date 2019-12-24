@@ -29,6 +29,7 @@ pipeline {
             	#sh "kubectl apply -f kubia-deploment.yaml"
                 sh "helm install --debug --dry-run ./kubia-chart"
                 sh "helm install ./kubia-chart"
+		sh "helm package kubia-chart"
            }
 	}
     }
